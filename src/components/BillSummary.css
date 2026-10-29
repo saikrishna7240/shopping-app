@@ -1,0 +1,88 @@
+.bill-summary {
+  max-width: 1200px;
+  margin: 32px auto;
+  padding: 24px;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.bill-summary h2 {
+  margin-top: 0;
+  color: #111827;
+}
+
+.bill-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.offers-list {
+  padding: 16px 0;
+}
+
+.offers-list h3 {
+  margin: 0 0 16px;
+  color: #374151;
+}
+
+.offer-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px dashed #e5e7eb;
+}
+
+.offer-row p {
+  margin: 6px 0 0;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.discount-amount,
+.savings-row strong {
+  color: #059669;
+  white-space: nowrap;
+}
+
+.no-offers {
+  color: #6b7280;
+}
+
+.final-amount {
+  margin-top: 8px;
+  border-top: 2px solid #d1d5db;
+  border-bottom: none;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.final-amount strong {
+  color: #4338ca;
+}
+
+.bill-message {
+  margin: 24px;
+  text-align: center;
+}
+
+.bill-error {
+  color: #dc2626;
+}
+
+@media (max-width: 600px) {
+  .bill-summary {
+    margin: 24px 16px;
+    padding: 16px;
+  }
+
+  .final-amount {
+    font-size: 17px;
+  }
+}
