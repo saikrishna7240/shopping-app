@@ -13,8 +13,16 @@ export const getOffers = async (): Promise<Offer[]> => {
       title: String(data.title ?? ''),
       description: String(data.description ?? ''),
       type: data.type as Offer['type'],
-      discountValue: Number(data.discountValue),
+      discountValue: Number(data.discountValue ?? 0),
       minimumPurchase: Number(data.minimumPurchase ?? 0),
+
+      targetProduct: data.targetProduct
+        ? String(data.targetProduct)
+        : undefined,
+
+      triggerProduct: data.triggerProduct
+        ? String(data.triggerProduct)
+        : undefined,
     };
   });
 };
