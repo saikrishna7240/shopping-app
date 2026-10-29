@@ -1,10 +1,20 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import type { RootState } from '../app/store';
-import type { Offer } from "../types/offer.type";
+import type { Offer } from '../types/offer.type';
 import { getOffers } from '../services/offerServices';
 import { calculateBill } from '../utils/calculateBill';
 import './BillSummary.css';
+
+function formatPrice(price: number): string {
+  const roundedPrice = Math.round((price + Number.EPSILON) * 100) / 100;
+
+  if (roundedPrice < 1) {
+    return `${Math.round(roundedPrice * 100)}p`;
+  }
+
+  return `£${roundedPrice.toFixed(2)}`;
+}
 
 function BillSummary() {
   const items = useSelector((state: RootState) => state.cart.items);
@@ -45,7 +55,7 @@ function BillSummary() {
 
       <div className="bill-row">
         <span>Subtotal before offers</span>
-        <strong>₹{bill.subtotal.toFixed(2)}</strong>
+        <strong>{formatPrice(bill.subtotal)}</strong>
       </div>
 
       <div className="offers-list">
@@ -64,7 +74,7 @@ function BillSummary() {
               </div>
 
               <strong className="discount-amount">
-                −₹{offer.savings.toFixed(2)}
+                −{formatPrice(offer.savings)}
               </strong>
             </div>
           ))
@@ -73,12 +83,12 @@ function BillSummary() {
 
       <div className="bill-row savings-row">
         <span>Total savings</span>
-        <strong>−₹{bill.totalSavings.toFixed(2)}</strong>
+        <strong>−{formatPrice(bill.totalSavings)}</strong>
       </div>
 
       <div className="bill-row final-amount">
         <span>Final payable amount</span>
-        <strong>₹{bill.finalAmount.toFixed(2)}</strong>
+        <strong>{formatPrice(bill.finalAmount)}</strong>
       </div>
     </section>
   );

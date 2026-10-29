@@ -63,8 +63,11 @@ function ProductList() {
             <div className="product-info">
               <span className="product-category">{product.category}</span>
               <h3>{product.name}</h3>
-              <p className="product-price">₹{product.price.toFixed(2)}</p>
-
+<p className="product-price">
+  {product.price < 1
+    ? `${Math.round(product.price * 100)}p`
+    : `£${product.price.toFixed(2)}`}
+</p>
               <button
                 className="add-to-cart-button"
                 onClick={() =>

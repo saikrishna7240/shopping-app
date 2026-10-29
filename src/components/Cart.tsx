@@ -7,6 +7,14 @@ import {
 } from '../features/cart/cartSlice';
 import './Cart.css';
 
+function formatPrice(price: number): string {
+  if (price < 1) {
+    return `${Math.round(price * 100)}p`;
+  }
+
+  return `£${price.toFixed(2)}`;
+}
+
 function Cart() {
   const items = useSelector((state: RootState) => state.cart.items);
   const dispatch = useDispatch<AppDispatch>();
@@ -29,9 +37,11 @@ function Cart() {
               <article className="cart-item" key={item.id}>
                 <div className="cart-item-details">
                   <h3>{item.name}</h3>
-                  <p>₹{item.price.toFixed(2)} each</p>
+
+                  <p>{formatPrice(item.price)} each</p>
+
                   <p>
-                    Item total: ₹{(item.price * item.quantity).toFixed(2)}
+                    Item total: {formatPrice(item.price * item.quantity)}
                   </p>
                 </div>
 
@@ -67,7 +77,7 @@ function Cart() {
 
           <div className="cart-subtotal">
             <span>Subtotal before offers</span>
-            <strong>₹{subtotal.toFixed(2)}</strong>
+            <strong>{formatPrice(subtotal)}</strong>
           </div>
         </>
       )}
